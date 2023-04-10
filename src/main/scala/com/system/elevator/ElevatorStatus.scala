@@ -40,7 +40,7 @@ case class ElevatorStatus(
     def _scoreStepsToFloorPickup(pickupOrder: PickupOrder, currentFloor: Int, orders: List[PickupOrder]): Int = {
       orders match {
         //elevator is free
-        case Nil => Math.abs(currentFloor - pickupOrder.numOfFloor) + 1 
+        case Nil => Math.abs(currentFloor - pickupOrder.numOfFloor) + 1
         //serve first
         case head :: tail if ElevatorStatus.toServeBefore(pickupOrder, head, currentFloor) =>
           _scoreStepsToFloorPickup(pickupOrder, currentFloor, Nil) + _scoreStepsToFloorPickup(head, pickupOrder.numOfFloor, tail)
